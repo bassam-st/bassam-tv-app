@@ -1,23 +1,26 @@
-import { Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Home from './pages/Home'
-import Watch from './pages/Watch'
-import League from './pages/League'
-import './App.css'
+import { useGate } from "./auth/useGate";
+import LoginPhone from "./pages/LoginPhone";
+import Blocked from "./pages/Blocked";
+import Home from "./pages/Home";
 
-function App() {
-  return (
-    <div className="app">
-      <Header />
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/watch/:matchId" element={<Watch />} />
-          <Route path="/league/:leagueId" element={<League />} />
-        </Routes>
-      </main>
-    </div>
-  )
+export default function App() {
+  const gate = useGate();
+
+  if (gate.loading) {
+    return (
+      <div className="container">
+        <div className="card">جاري التحقق…</div>
+      </div>
+    );
+  }
+
+  if (!gate.user) {
+    return <LoginPhone />;
+  }
+
+  if (gate.blocked) {
+    return <Blocked />;
+  }
+
+  return <Home phone={gate.user.phone} isAdmin={gate.admin} />;
 }
-
-export default App
