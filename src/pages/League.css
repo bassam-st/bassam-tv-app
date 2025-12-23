@@ -1,0 +1,95 @@
+.league-page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.league-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.back-link {
+  color: #a0a0b0;
+  transition: color 0.3s ease;
+  width: fit-content;
+}
+
+.back-link:hover {
+  color: #e94560;
+}
+
+.league-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(145deg, #1e1e32, #252540);
+  padding: 25px;
+  border-radius: 16px;
+}
+
+.league-icon-large {
+  font-size: 3rem;
+}
+
+.league-title {
+  font-size: 1.8rem;
+  background: linear-gradient(90deg, #ffffff, #e94560);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.no-matches {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(145deg, #1e1e32, #252540);
+  border-radius: 16px;
+}
+
+.no-matches p {
+  color: #a0a0b0;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.back-btn {
+  background: linear-gradient(90deg, #e94560, #ff6b6b);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+}
+
+@media (max-width: 768px) {
+  .league-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .league-title {
+    font-size: 1.4rem;
+  }
+  
+  .matches-grid {
+    grid-template-columns: 1fr;
+  }
+}

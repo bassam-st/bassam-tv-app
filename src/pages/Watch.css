@@ -1,0 +1,252 @@
+.watch-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.watch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-link {
+  color: #a0a0b0;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #e94560;
+}
+
+.match-league-badge {
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.watch-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 30px;
+}
+
+.player-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.match-info {
+  background: linear-gradient(145deg, #1e1e32, #252540);
+  border-radius: 16px;
+  padding: 25px;
+}
+
+.teams-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.team-logo-large {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+}
+
+.team-name-large {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.score-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.live-indicator {
+  background: #e94560;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.upcoming-indicator {
+  background: #3498db;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.current-score {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #e94560;
+}
+
+.match-minute {
+  color: #a0a0b0;
+  font-size: 0.9rem;
+}
+
+.match-time-large {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.channels-info {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+.channels-info h4 {
+  margin-bottom: 12px;
+  color: #a0a0b0;
+  font-size: 0.9rem;
+}
+
+.channels-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.channel-badge {
+  background: rgba(233, 69, 96, 0.15);
+  color: #e94560;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.sidebar {
+  background: linear-gradient(145deg, #1e1e32, #252540);
+  border-radius: 16px;
+  padding: 20px;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.sidebar-title {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.sidebar-matches {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-match {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-match:hover {
+  background: rgba(233, 69, 96, 0.15);
+}
+
+.sidebar-teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.sidebar-vs {
+  color: #a0a0b0;
+  font-size: 0.75rem;
+}
+
+.sidebar-status {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.sidebar-status.live {
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+}
+
+.sidebar-status.upcoming {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+}
+
+.not-found {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.not-found h2 {
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  background: #e94560;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  display: inline-block;
+}
+
+@media (max-width: 1024px) {
+  .watch-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .teams-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .team-logo-large {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .current-score {
+    font-size: 2rem;
+  }
+}
