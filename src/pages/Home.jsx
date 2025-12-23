@@ -1,55 +1,45 @@
-import { Link } from 'react-router-dom'
-import MatchCard from '../components/MatchCard'
-import { matches, leagues, getLiveMatches, getUpcomingMatches } from '../data/matches'
-import './Home.css'
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import AdminPanel from "../admin/AdminPanel";
 
-function Home() {
-  const liveMatches = getLiveMatches()
-  const upcomingMatches = getUpcomingMatches()
-
+export default function Home({ phone, isAdmin }) {
   return (
-    <div className="home">
-      <section className="hero">
-        <h1 className="hero-title">بث مباشر للمباريات</h1>
-        <p className="hero-subtitle">شاهد جميع المباريات الرياضية مباشرة بجودة عالية</p>
-      </section>
-
-      <section className="leagues-section">
-        <h2 className="section-title">الدوريات والبطولات</h2>
-        <div className="leagues-grid">
-          {leagues.map(league => (
-            <Link to={`/league/${league.id}`} key={league.id} className="league-card">
-              <span className="league-icon">{league.icon}</span>
-              <span className="league-name">{league.name}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {liveMatches.length > 0 && (
-        <section className="matches-section">
-          <h2 className="section-title">
-            <span className="live-dot"></span>
-            المباريات المباشرة الآن
-          </h2>
-          <div className="matches-grid">
-            {liveMatches.map(match => (
-              <MatchCard key={match.id} match={match} />
-            ))}
+    <div className="container">
+      <div className="card col">
+        <div className="row" style={{ justifyContent: "space-between" }}>
+          <div className="col" style={{ gap: 6 }}>
+            <h2>مرحبًا</h2>
+            <div className="row">
+              <span className="badge">{phone}</span>
+              {isAdmin ? <span className="badge ok">Admin</span> : <span className="badge">User</span>}
+            </div>
           </div>
-        </section>
-      )}
 
-      <section className="matches-section">
-        <h2 className="section-title">المباريات القادمة</h2>
-        <div className="matches-grid">
-          {upcomingMatches.map(match => (
-            <MatchCard key={match.id} match={match} />
-          ))}
+          <button className="btn-secondary" onClick={() => signOut(auth)}>
+            تسجيل خروج
+          </button>
         </div>
-      </section>
-    </div>
-  )
-}
 
-export default Home
+        <div className="hr"></div>
+
+        {!isAdmin && (
+          <div className="col">
+            <h3>واجهة المستخدم</h3>
+            <small>
+              هنا ستضع واجهة تطبيقك (القنوات/المشغل/الخ).
+              الآن ركزنا على تسجيل الدخول + نظام الحظر/الأدمن.
+            </small>
+          </div>
+        )}
+
+        {isAdmin && (
+          <div className="col">
+            <h3>لوحة الإدارة</h3>
+            <small>تستطيع حظر أو فتح أي مستخدم.</small>
+            <AdminPanel />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
