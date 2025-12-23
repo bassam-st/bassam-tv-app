@@ -1,0 +1,118 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.2), rgba(22, 33, 62, 0.5));
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #ffffff, #e94560);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  color: #a0a0b0;
+  font-size: 1.1rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.live-dot {
+  width: 12px;
+  height: 12px;
+  background: #e94560;
+  border-radius: 50%;
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.leagues-section {
+  margin-bottom: 20px;
+}
+
+.leagues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.league-card {
+  background: linear-gradient(145deg, #1e1e32, #252540);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.league-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(233, 69, 96, 0.3);
+  box-shadow: 0 10px 30px rgba(233, 69, 96, 0.15);
+}
+
+.league-icon {
+  font-size: 2rem;
+}
+
+.league-name {
+  font-size: 0.85rem;
+  text-align: center;
+  color: #a0a0b0;
+}
+
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .leagues-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+  
+  .league-card {
+    padding: 15px 10px;
+  }
+  
+  .league-name {
+    font-size: 0.75rem;
+  }
+  
+  .matches-grid {
+    grid-template-columns: 1fr;
+  }
+}
