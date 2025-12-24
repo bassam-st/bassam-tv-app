@@ -1,34 +1,18 @@
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../firebase";
 
-/**
- * ينشئ reCAPTCHA (مطلوب من Firebase Phone Auth على الويب)
- */
-export function ensureRecaptcha(containerId = "recaptcha-container") {
-  if (window.__recaptchaVerifier) return window.__recaptchaVerifier;
-
-  window.__recaptchaVerifier = new RecaptchaVerifier(auth, containerId, {
-    size: "invisible"
-  });
-
-  return window.__recaptchaVerifier;
+export function ensureRecaptcha(id = "recaptcha-container") {
+  if (window.recaptchaVerifier) return window.recaptchaVerifier;
+  window.recaptchaVerifier = new RecaptchaVerifier(auth, id, { size: "invisible" });
+  return window.recaptchaVerifier;
 }
 
-/**
- * إرسال كود OTP
- */
-export async function sendOtp(phoneE164) {
+export async function sendOtp(phone) {
   const verifier = ensureRecaptcha();
-  const confirmation = await signInWithPhoneNumber(auth, phoneE164, verifier);
-  window.__confirmationResult = confirmation;
-  return true;
+  const result = await signInWithPhoneNumber(auth, phone, verifier);
+  window.confirmationResult = result;
 }
 
-/**
- * تأكيد OTP
- */
 export async function confirmOtp(code) {
-  if (!window.__confirmationResult) throw new Error("لا يوجد طلب OTP نشط");
-  const res = await window.__confirmationResult.confirm(code);
-  return res.user;
+  return await window.confirmationResult.confirm(code);
 }
