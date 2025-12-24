@@ -3,24 +3,20 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./styles.css";
 
-// تشغيل كونسول داخل الصفحة على الجوال عند فتح الرابط مع ?debug=1
-async function enableMobileDebug() {
-  try {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("debug") === "1") {
-      const { default: eruda } = await import("eruda");
-      eruda.init();
+// تفعيل كونسول الجوال فقط عند ?debug=1
+function enableMobileDebug() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("debug") === "1") {
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/eruda";
+    script.onload = () => {
+      window.eruda.init();
       console.log("Eruda enabled");
-    }
-  } catch (e) {
-    // تجاهل
+    };
+    document.body.appendChild(script);
   }
 }
 
 enableMobileDebug();
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
