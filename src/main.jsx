@@ -8,7 +8,7 @@ async function enableMobileDebug() {
   try {
     const params = new URLSearchParams(window.location.search);
     if (params.get("debug") === "1") {
-      const eruda = (await import("eruda")).default;
+      const { default: eruda } = await import("eruda");
       eruda.init();
       console.log("Eruda enabled");
     }
@@ -19,4 +19,8 @@ async function enableMobileDebug() {
 
 enableMobileDebug();
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
